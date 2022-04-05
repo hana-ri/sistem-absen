@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\AbsenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/absen/get', [AbsenController::class, 'absen']);
 
 Route::resource('/dashboard/device', DeviceController::class);

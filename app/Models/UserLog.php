@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserCard extends Model
+class UserLog extends Model
 {
     use HasFactory;
 
-    protected $table = 'user_cards';
+
     protected $guarded = [];
-    protected $primaryKey = 'card_uid';
-    public $incrementing = false;
+    public $timestamps = false;
 }
