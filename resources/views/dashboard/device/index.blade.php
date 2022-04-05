@@ -78,7 +78,7 @@
                                         <tr>
                                             <td>{{ $device->device_name }}</td>
                                             <td>{{ $device->device_dept }}</td>
-                                            <td>{{ $device->device_mode }}</td>
+                                            <td>{{ ($device->device_mode) ? 'Aktif' : 'Non-Aktif' }}</td>
                                             <td>{{ $device->device_uid }}</td>
                                             <td>
                                                 <div class="form-button-action">

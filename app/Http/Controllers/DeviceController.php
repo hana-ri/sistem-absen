@@ -95,6 +95,7 @@ class DeviceController extends Controller
         $rules = [
             'device_name' => 'required|max:32',
             'device_dept' => 'required|max:32',
+            'device_mode' => 'required',
         ];
         
         $validatedData = $request->validate($rules);

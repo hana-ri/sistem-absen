@@ -25,6 +25,13 @@
                         <label for="idDeviceDept">Nama Departement</label>
                         <input type="text" class="form-control" id="idDeviceDept" placeholder="Masukan nama departemen..." name="device_dept" value="{{ old('device_dept', $device->device_dept) }}">
                      </div>
+                     <div class="form-group">
+                        <label for="inputState">Status Perangkat</label>
+                        <select id="inputState" class="form-control" name="device_mode">
+                          <option value="1" {{ ($device->device_mode) ? 'selected' : ''}}>Aktif</option>
+                          <option value="0" {{ (!$device->device_mode) ? 'selected' : ''}}>Non-aktif</option>
+                        </select>
+                      </div>
                 </form>
             </div>
             <div class="card-footer">
