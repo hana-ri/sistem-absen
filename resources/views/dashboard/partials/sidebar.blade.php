@@ -26,7 +26,7 @@
 							<h4 class="text-section">Components</h4>
 						</li>
 						{{-- <li class="nav-item {{ Request::is('/dashboard/users') ? 'active' : ''}}"> --}}
-						<li class="nav-item {{ Request::is('dashboard/users') ? 'active' : ''}}">
+						<li class="nav-item {{ Request::is('dashboard*') ? 'active' : ''}}">
 							<a data-toggle="collapse" href="#submenu">
 								<i class="fas fa-bars"></i>
 								<p>Menu</p>
@@ -54,19 +54,24 @@
 											</ul>
 										</div>
 									</li> --}}
-									<li class="{{ Request::is('dashboard/users') ? 'active' : ''}}">
+									<li class="{{ Request::is('dashboard/users*') ? 'active' : ''}}">
 										<a href="/dashboard/users">
 											<span class="sub-item">Pengguna</span>
 										</a>
 									</li>
-									<li class="{{ Request::is('dashboard/information-users') ? 'active' : ''}}">
-										<a href="/dashboard/information-users">
+									<li class="{{ Request::is('dashboard/user-info*') ? 'active' : ''}}">
+										<a href="/dashboard/user-info">
 											<span class="sub-item">Informasi Pengguna</span>
 										</a>
 									</li>
-									<li class="{{ Request::is('dashboard/information-users') ? 'active' : ''}}">
-										<a href="/dashboard/information-users">
-											<span class="sub-item">Kartu</span>
+									<li class="{{ Request::is('dashboard/device*') ? 'active' : ''}}">
+										<a href="/dashboard/device">
+											<span class="sub-item">Perangkat</span>
+										</a>
+									</li>
+									<li class="{{ Request::is('dashboard/userlog*') ? 'active' : ''}}">
+										<a href="/dashboard/userlog">
+											<span class="sub-item">Histori Pengguna</span>
 										</a>
 									</li>
 								</ul>

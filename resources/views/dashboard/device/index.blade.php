@@ -1,8 +1,6 @@
 @extends('dashboard\layouts\main')
 
 @section('container')
-
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -78,8 +76,9 @@
                                         <tr>
                                             <td>{{ $device->device_name }}</td>
                                             <td>{{ $device->device_dept }}</td>
-                                            <td>{{ ($device->device_mode) ? 'Aktif' : 'Non-Aktif' }}</td>
-                                            <td>{{ $device->device_uid }}</td>
+                                            <td>{{ ($device->device_mode) ? 'Aktif' : 'Pasif' }}</td>
+                                            <input type="hidden" value="{{ $device->device_uid }}" id="myInput">
+                                            <td>{{ $device->device_uid }}<button class="btn btn-link btn-secondary" onclick="myFunction()"><i class="fa fa-copy"></i></button> </td>
                                             <td>
                                                 <div class="form-button-action">
                                                     <a class="btn btn-link btn-warning btn-lg" href="/dashboard/device/{{ $device->device_uid }}/edit">
@@ -122,5 +121,14 @@
             });
         });
     });
+
+
+    function myFunction() {
+        var copyText = document.getElementById("myInput");
+
+        navigator.clipboard.writeText(copyText.value);
+
+        alert("Copied : " + copyText.value);
+    } 
 </script>
 @endpush

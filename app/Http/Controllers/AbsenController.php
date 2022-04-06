@@ -33,33 +33,37 @@ class AbsenController extends Controller
 						if ($dataUserCard->card_status) {
 							// Cek apakah data card_uid sama dengan yang ada pada DB atau 0
 							if ($dataUserCard->card_uid == request('card_uid') || $dataUserCard->card_uid == 0) {
-								// Cek apakah sudah melakukan time in/sudah
-								if (!UserLog::firstWhere(['card_uid' => $dataUserCard->card_uid, 'check_in_date' => $dt->toDateString(), 'card_out' => 0])) {
-									// Melakukan Time in
-                                        $result = UserLog::create([
-                                            'card_uid' => $dataUserCard->card_uid,
-                                            'check_in_date' => $dt->toDateString(),
-                                            'time_in' => $dt->toTimeString(),
-                                            'time_out' => "00:00:00",
-                                        ]);
-                                        if (!$result) {
-                                            abort(500, 'Gagal melakukan time in');
-                                        }
-									return 'Time in';
+								if (UserLog::firstWhere(['card_uid' => $dataUserCard->card_uid, 'check_in_date' => $dt->toDateString(), 'card_out' => 1])) {
+									return 'Anda sudah melakukan time in hari ini!';
 								} else {
-									// Melakukan Time out
-									$result = UserLog::where([
-										'card_uid' => $dataUserCard->card_uid,
-										'card_out' => 0,
-										'check_in_date' => $dt->toDateString(),
-									])->update([
-										'time_out' => $dt->toTimeString(),
-										'card_out' => true
-									]);
-									if (!$result) {
-										abort(500, 'Gagal melakukan time out');
+									// Cek apakah sudah melakukan time in/sudah
+									if (!UserLog::firstWhere(['card_uid' => $dataUserCard->card_uid, 'check_in_date' => $dt->toDateString(), 'card_out' => 0])) {
+										// Melakukan Time in
+											$result = UserLog::create([
+												'card_uid' => $dataUserCard->card_uid,
+												'check_in_date' => $dt->toDateString(),
+												'time_in' => $dt->toTimeString(),
+												'time_out' => "00:00:00",
+											]);
+											if (!$result) {
+												abort(500, 'Gagal melakukan time in');
+											}
+										return 'Time in';
+									} else {
+										// Melakukan Time out
+										$result = UserLog::where([
+											'card_uid' => $dataUserCard->card_uid,
+											'card_out' => 0,
+											'check_in_date' => $dt->toDateString(),
+										])->update([
+											'time_out' => $dt->toTimeString(),
+											'card_out' => true
+										]);
+										if (!$result) {
+											abort(500, 'Gagal melakukan time out');
+										}
+										return 'Time out';
 									}
-									return 'Time out';
 								}
 							} else {
 								return 'Not Allowed!';

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\UserLogController;
+use App\Http\Controllers\UserInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('/dashboard/device', DeviceController::class);
+
+Route::resource('/dashboard/user-info', UserInfoController::class);
+
 Route::get('/absen/get', [AbsenController::class, 'absen']);
 
-Route::resource('/dashboard/device', DeviceController::class);
+Route::get('/dashboard/userlog', [UserLogController::class, 'index']);

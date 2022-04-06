@@ -29,7 +29,7 @@
                         <label for="inputState">Status Perangkat</label>
                         <select id="inputState" class="form-control" name="device_mode">
                           <option value="1" {{ ($device->device_mode) ? 'selected' : ''}}>Aktif</option>
-                          <option value="0" {{ (!$device->device_mode) ? 'selected' : ''}}>Non-aktif</option>
+                          <option value="0" {{ (!$device->device_mode) ? 'selected' : ''}}>Pasif</option>
                         </select>
                       </div>
                 </form>
@@ -42,7 +42,6 @@
             </div>
         </div>
     </div>
-    <div class="col-6 col-md-4">.col-6 .col-md-4</div>
   </div>
 @endsection
 @push('scripts')
