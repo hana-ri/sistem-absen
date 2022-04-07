@@ -12,4 +12,10 @@ class UserInfo extends Model
     protected $table = 'user_infos';
 
     protected $guarded = [];
+
+
+    public function userCard()
+    {
+        return $this->belongsTo(UserCard::class);
+    }
 }

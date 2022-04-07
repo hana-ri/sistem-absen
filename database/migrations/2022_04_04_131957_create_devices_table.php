@@ -15,7 +15,7 @@ class CreateDevicesTable extends Migration
     public function up()
     {
         Schema::create('devices', function (Blueprint $table) {
-            $table->string('device_uid', 32)->primary();
+            $table->string('uid', 32)->primary();
             $table->string('device_name', 32);
             $table->string('device_dept', 32);
             $table->boolean('device_mode')->default(0);

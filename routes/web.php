@@ -5,6 +5,7 @@ use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\UserLogController;
 use App\Http\Controllers\UserInfoController;
+use App\Http\Controllers\UserCardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,10 @@ Route::resource('/dashboard/device', DeviceController::class);
 
 Route::resource('/dashboard/user-info', UserInfoController::class);
 
+Route::resource('/dashboard/user-card', UserCardController::class);
+
 Route::get('/absen/get', [AbsenController::class, 'absen']);
 
 Route::get('/dashboard/userlog', [UserLogController::class, 'index']);
+
+Route::get('/dashboard', [UserLogController::class, 'dashboard']);

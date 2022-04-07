@@ -1,15 +1,12 @@
 @extends('dashboard\layouts\main')
 
 @section('container')
-
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h4 class="card-title">Daftar Informasi Pengguna</h4>
-                                {{-- <a class="btn btn-primary btn-round ml-auto" href="/dashboard/user-info/create"><i class="fa fa-plus"> </i>Tambah Data</a> --}}
+                                <h4 class="card-title">Histori Absen Hari Ini</h4>
                             </div>
                         </div>
                         <div class="card-body">

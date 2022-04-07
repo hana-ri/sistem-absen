@@ -19,28 +19,28 @@ class AbsenController extends Controller
 		// Cek apakah kedua request terpenuhi/tidak
 		if (request('card_uid') && request('device_token')) {
 			// Cek apakah device_uid tersebut terdaftar/tidak
-			if (!Device::where('device_uid', request('device_token'))->exists()) {
+			if (!Device::where('uid', request('device_token'))->exists()) {
 				return "Device tidak terdaftar";
 			} else {
-				$dataDevice = Device::firstWhere('device_uid', request('device_token'));
+				$dataDevice = Device::firstWhere('uid', request('device_token'));
 				// Cek apakah device_mode berada pada attandance (1)/enrollment (0)
 				if ($dataDevice->device_mode) {
-					if (!UserCard::where('card_uid', request('card_uid'))->exists()) {
+					if (!UserCard::where('uid', request('card_uid'))->exists()) {
 						return 'kartu UID tidak dikenal';
 					} else {
-						$dataUserCard = UserCard::firstWhere('card_uid', request('card_uid'));
+						$dataUserCard = UserCard::firstWhere('uid', request('card_uid'));
 						// Cek apakah card_status sudah aktif atau belum
 						if ($dataUserCard->card_status) {
 							// Cek apakah data card_uid sama dengan yang ada pada DB atau 0
-							if ($dataUserCard->card_uid == request('card_uid') || $dataUserCard->card_uid == 0) {
-								if (UserLog::firstWhere(['card_uid' => $dataUserCard->card_uid, 'check_in_date' => $dt->toDateString(), 'card_out' => 1])) {
+							if ($dataUserCard->uid == request('card_uid') || $dataUserCard->uid == 0) {
+								if (UserLog::firstWhere(['user_card_uid' => $dataUserCard->uid, 'check_in_date' => $dt->toDateString(), 'card_out' => 1])) {
 									return 'Anda sudah melakukan time in hari ini!';
 								} else {
 									// Cek apakah sudah melakukan time in/sudah
-									if (!UserLog::firstWhere(['card_uid' => $dataUserCard->card_uid, 'check_in_date' => $dt->toDateString(), 'card_out' => 0])) {
+									if (!UserLog::firstWhere(['user_card_uid' => $dataUserCard->uid, 'check_in_date' => $dt->toDateString(), 'card_out' => 0])) {
 										// Melakukan Time in
 											$result = UserLog::create([
-												'card_uid' => $dataUserCard->card_uid,
+												'user_card_uid' => $dataUserCard->uid,
 												'check_in_date' => $dt->toDateString(),
 												'time_in' => $dt->toTimeString(),
 												'time_out' => "00:00:00",
@@ -52,7 +52,7 @@ class AbsenController extends Controller
 									} else {
 										// Melakukan Time out
 										$result = UserLog::where([
-											'card_uid' => $dataUserCard->card_uid,
+											'user_card_uid' => $dataUserCard->uid,
 											'card_out' => 0,
 											'check_in_date' => $dt->toDateString(),
 										])->update([
@@ -73,12 +73,12 @@ class AbsenController extends Controller
 						}
 					}
 				} else {
-					// Cek apakah card_uid sudah pernah ditambahkan/tidak
-					if (UserCard::where('card_uid', request('card_uid'))->exists()) {
+					// Cek apakah user_card_uid sudah pernah ditambahkan/tidak
+					if (UserCard::where('uid', request('card_uid'))->exists()) {
 						return 'Kartu sudah pernah ditambahkan';
 					} else {
 						$newCard = [
-                            'card_uid' => request('card_uid'),
+                            'uid' => request('card_uid'),
                             'device_uid' => request('device_token'),
                         ];
                         // dd($newCard);

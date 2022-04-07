@@ -14,9 +14,9 @@ class CreateUserCardsTable extends Migration
     public function up()
     {
         Schema::create('user_cards', function (Blueprint $table) {
-            $table->string('card_uid')->primary();
+            $table->string('uid')->primary();
             $table->boolean('card_status')->default(0);
-            $table->string('device_uid')->foreign()->references('device_uid')->on('devices');
+            $table->string('device_uid')->foreign()->references('uid')->on('devices');
             $table->timestamps();
         });
     }

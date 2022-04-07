@@ -37,12 +37,12 @@
                         <div class="col-lg-8 col-md-6">
                             <div class="form-group">
                                 <label for="idAddress">UID Kartu</label>
-                                <select class="custom-select selectpicker" name="card_uid" data-show-subtext="true" data-live-search="true">
-                                    @if (!$userCards)
-                                        <option selected>Tidak ada kartu UID yang terdaftar</option>
+                                <select class="custom-select selectpicker" name="user_card_uid" data-show-subtext="true" data-live-search="true">
+                                    @if (!$userCards->count())
+                                        <option value="null" selected>Tidak ada kartu UID yang terdaftar</option>
                                     @else
                                         @foreach ($userCards as $userCard)
-                                            <option value="{{ $userCard->card_uid }}" {{ ($userInfo->card_uid === $userCard->card_uid) ? 'selected' : '' }}>{{ $userCard->card_uid }}</option>
+                                            <option value="{{ $userCard->uid }}">{{ $userCard->uid }}</option>
                                         @endforeach
                                     @endif
                                   </select>
@@ -71,10 +71,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="idAddress">Role</label>
-                                <select class="custom-select" name="Role">
-                                    <option value="Pelajar" {{ ($userInfo->Role == 'Pelajar') ? 'selected' :'' }}>Pelajar</option>
-                                    <option value="Guru" {{ ($userInfo->Role == 'Guru') ? 'selected' :'' }}>Guru</option>
-                                    <option value="Staff" {{ ($userInfo->Role == 'Staff') ? 'selected' :'' }}>Staff</option>
+                                <select class="custom-select" name="role">
+                                    <option value="Pelajar" {{ ($userInfo->role == 'Pelajar') ? 'selected' :'' }}>Pelajar</option>
+                                    <option value="Guru" {{ ($userInfo->role == 'Guru') ? 'selected' :'' }}>Guru</option>
+                                    <option value="Staff" {{ ($userInfo->role == 'Staff') ? 'selected' :'' }}>Staff</option>
                                   </select>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
             </div>
             <div class="card-footer">
                 <div class="d-flex align-items-center">
-                    <a class="btn btn-secondary btn-round" href="/dashboard/user-info">Kembali</a>
+                    <a class="btn btn-primary btn-round" href="/dashboard/user-info">Kembali</a>
                     <button type="button" class="btn btn-warning btn-round ml-auto" id="updateBtn">Update</button>
                 </div>
             </div>

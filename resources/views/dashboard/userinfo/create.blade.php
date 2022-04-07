@@ -1,12 +1,13 @@
 @extends('dashboard\layouts\main')
 
+
 @section('container')
 <div class="row">
     <div class="col">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Ubah Perangkat</h4>
+                    <h4 class="card-title">Tambah Informasi Pengguna</h4>
                 </div>
             </div>
             <div class="card-body">
@@ -36,12 +37,12 @@
                         <div class="col-lg-8 col-md-6">
                             <div class="form-group">
                                 <label for="idAddress">UID Kartu</label>
-                                <select class="custom-select selectpicker" name="card_uid" data-show-subtext="true" data-live-search="true">
-                                    @if (!$userCards)
-                                        <option selected>Tidak ada kartu UID yang terdaftar</option>
+                                <select class="custom-select selectpicker" name="user_card_uid" data-show-subtext="true" data-live-search="true">                                    
+                                    @if (!$userCards->count())
+                                        <option value="null" selected>Tidak ada kartu UID yang terdaftar</option>
                                     @else
                                         @foreach ($userCards as $userCard)
-                                            <option value="{{ $userCard->card_uid }}">{{ $userCard->card_uid }}</option>
+                                            <option value="{{ $userCard->uid }}">{{ $userCard->uid }}</option>
                                         @endforeach
                                     @endif
                                   </select>
@@ -70,7 +71,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="idAddress">Role</label>
-                                <select class="custom-select" name="Role">
+                                <select class="custom-select" name="role">
                                     <option value="Pelajar">Pelajar</option>
                                     <option value="Guru">Guru</option>
                                     <option value="Staff">Staff</option>
@@ -90,8 +91,8 @@
             </div>
             <div class="card-footer">
                 <div class="d-flex align-items-center">
-                    <a class="btn btn-secondary btn-round" href="/dashboard/user-info">Kembali</a>
-                    <button type="button" class="btn btn-primary btn-round ml-auto" id="submitButton">simpan</button>
+                    <a class="btn btn-primary btn-round" href="/dashboard/user-info">Kembali</a>
+                    <button type="button" class="btn btn-success btn-round ml-auto" id="submitButton">simpan</button>
                 </div>
             </div>
         </div>

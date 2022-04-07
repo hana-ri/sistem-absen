@@ -1,15 +1,12 @@
 @extends('dashboard\layouts\main')
 
 @section('container')
-
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h4 class="card-title">Daftar Informasi Pengguna</h4>
-                                {{-- <a class="btn btn-primary btn-round ml-auto" href="/dashboard/user-info/create"><i class="fa fa-plus"> </i>Tambah Data</a> --}}
+                                <h4 class="card-title">Daftar Kartu Pengguna</h4>
                             </div>
                         </div>
                         <div class="card-body">
@@ -18,38 +15,30 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Peran</th>
-                                            <th>Unik Identitas</th>
-                                            <th>Tanggal</th>
-                                            <th>Waktu Masuk</th>
-                                            <th>Waktu Keluar</th>
+                                            <th>Name</th>
+                                            <th>Kartu UID</th>
+                                            <th>Status</th>
                                             <th>Departemen</th>
-                                            <th>Nama Perangkat</th>
-                                            <th>Action</th>
+                                            <th style="width: 10%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (!$userlogs)
+                                        @if (!$userCards)
                                             
                                         @else
-                                        @foreach ($userlogs as $userlog)
+                                        @foreach ($userCards as $userCard)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $userlog->userCard->userInfo->name }}</td>
-                                            <td>{{ $userlog->userCard->userInfo->role }}</td>
-                                            <td>{{ $userlog->userCard->userInfo->unique_identity }}</td>
-                                            <td>{{ $userlog->check_in_date }}</td>
-                                            <td>{{ $userlog->time_in }}</td>
-                                            <td>{{ $userlog->time_out }}</td>
-                                            <td>{{ $userlog->userCard->device->device_dept }}</td>
-                                            <td>{{ $userlog->userCard->device->device_name }}</td>
+                                            <td>{{ ($userCard->userInfo) ? $userCard->userInfo->name : 'Belum ditautkan' }}</td>
+                                            <td>{{ $userCard->uid }}</td>
+                                            <td>{{ ($userCard->card_status) ? 'Aktif' : 'Pasif' }}</td>
+                                            <td>{{ $userCard->device->device_dept }}</td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a class="btn btn-link btn-warning btn-lg" href="/dashboard/device/{{ $userlog->id }}/edit">
-                                                        <i class="fa fa-edit"></i>
+                                                    <a class="btn btn-link btn-secondary btn-lg" href="/dashboard/user-card/{{ $userCard->uid }}">
+                                                        <i class="fa fa-eye"></i>
                                                     </a>
-                                                    <button type="button" class="btn btn-link btn-danger" data-toggle="modal" data-target="#deleteModal" data-whatever="{{ $userlog->id }}">
+                                                    <button type="button" class="btn btn-link btn-danger" data-toggle="modal" data-target="#deleteModal" data-whatever="{{ $userCard->uid }}">
                                                         <i class="fa fa-times"></i>
                                                     </button>
                                                 </div>
@@ -69,7 +58,7 @@
 @endsection
 
 @push('title')
-    <title>Histori Absensi</title>
+    <title>Kartu Pengguna</title>
 @endpush
 
 @push('scripts')

@@ -28,7 +28,7 @@ class UserInfoController extends Controller
     public function create()
     {
         return view('/dashboard/userinfo/create', [
-            'userCards' => UserCard::all(),
+            'userCards' => UserCard::where('card_status', '!=', 1)->get(),
         ]);
     }
 
@@ -44,14 +44,19 @@ class UserInfoController extends Controller
             'name' => 'required',
             'unique_identity' => 'required',
             'DOB' => 'required',
-            'card_uid' => 'required',
+            'user_card_uid' => 'required',
             'gender' => 'required',
             'status' => 'required',
-            'Role' => 'required',
+            'role' => 'required',
             'address' => 'required',
         ]);
 
+        
+        // dd($result->user_card_uid);
         $result = UserInfo::create($validatedData);
+        if ($result->user_card_uid != null) {
+            UserCard::where('uid', $result->user_card_uid)->update(['card_status' => true]);
+        }
 
         if (!$result) {
             return 'Create user information failed';
@@ -81,9 +86,10 @@ class UserInfoController extends Controller
      */
     public function edit(UserInfo $userInfo)
     {
+        // dd(UserCard::all());
         return view('/dashboard/userinfo/edit', [
             'userInfo' => $userInfo,
-            'userCards' => UserCard::all()
+            'userCards' => UserCard::where('card_status', '!=', 1)->get(),
         ]);
     }
 
@@ -96,21 +102,21 @@ class UserInfoController extends Controller
      */
     public function update(Request $request, UserInfo $userInfo)
     {
-        // dd($request->all());
-
+        
         $validatedData = $request->validate([
             'name' => 'required',
             'unique_identity' => 'required',
             'DOB' => 'required',
-            'card_uid' => 'required',
+            'user_card_uid' => 'required',
             'gender' => 'required',
             'status' => 'required',
-            'Role' => 'required',
+            'role' => 'required',
             'address' => 'required',
         ]);
 
+        // dd($validatedData);
         $result = UserInfo::where('id', $userInfo->id)->update($validatedData);
-
+        
         if (!$result) {
             return 'update user information failed';
         }
@@ -127,8 +133,7 @@ class UserInfoController extends Controller
      */
     public function destroy(UserInfo $userInfo)
     {
-        
-        UserInfo::destroy($userInfo->id);
+        $userInfo->delete();
 
         return redirect('/dashboard/user-info');
     }

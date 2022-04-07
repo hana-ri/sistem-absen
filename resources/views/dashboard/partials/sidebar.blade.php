@@ -11,8 +11,8 @@
 							</a>
 							<div class="collapse" id="dashboard">
 								<ul class="nav nav-collapse">
-									<li>
-										<a href="../demo1/index.html">
+									<li class="{{ Request::is('dashboard') ? 'active' : ''}}">
+										<a href="/dashboard">
 											<span class="sub-item">Dashboard</span>
 										</a>
 									</li>
@@ -23,37 +23,16 @@
 							<span class="sidebar-mini-icon">
 								<i class="fa fa-ellipsis-h"></i>
 							</span>
-							<h4 class="text-section">Components</h4>
+							<h4 class="text-section">Daftar Opsi</h4>
 						</li>
-						{{-- <li class="nav-item {{ Request::is('/dashboard/users') ? 'active' : ''}}"> --}}
-						<li class="nav-item {{ Request::is('dashboard*') ? 'active' : ''}}">
+						<li class="nav-item {{ Request::is('dashboard/*') ? 'active' : ''}}">
 							<a data-toggle="collapse" href="#submenu">
 								<i class="fas fa-bars"></i>
-								<p>Menu</p>
+								<p>Opsi</p>
 								<span class="caret"></span>
 							</a>
 							<div class="collapse" id="submenu">
 								<ul class="nav nav-collapse">
-									{{-- <li>
-										<a data-toggle="collapse" href="#subnav1">
-											<span class="sub-item">Users</span>
-											<span class="caret"></span>
-										</a>
-										<div class="collapse" id="subnav1">
-											<ul class="nav nav-collapse subnav">
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-											</ul>
-										</div>
-									</li> --}}
 									<li class="{{ Request::is('dashboard/users*') ? 'active' : ''}}">
 										<a href="/dashboard/users">
 											<span class="sub-item">Pengguna</span>
@@ -67,6 +46,11 @@
 									<li class="{{ Request::is('dashboard/device*') ? 'active' : ''}}">
 										<a href="/dashboard/device">
 											<span class="sub-item">Perangkat</span>
+										</a>
+									</li>
+									<li class="{{ Request::is('dashboard/user-card*') ? 'active' : ''}}">
+										<a href="/dashboard/user-card">
+											<span class="sub-item">Kartu</span>
 										</a>
 									</li>
 									<li class="{{ Request::is('dashboard/userlog*') ? 'active' : ''}}">

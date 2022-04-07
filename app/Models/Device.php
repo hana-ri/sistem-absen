@@ -8,8 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Device extends Model
 {
     use HasFactory;
+    
     protected $table = 'devices';
+
     protected $guarded = [];
-    protected $primaryKey = 'device_uid';
+    
+    protected $primaryKey = 'uid';
+
     public $incrementing = false;
+
+    public function UserCard()
+    {
+        return $this->hasMany(UserCard::class);
+    }
+
 }

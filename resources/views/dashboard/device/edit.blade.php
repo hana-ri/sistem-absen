@@ -10,19 +10,19 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="deleteForm" action="/dashboard/device/{{ $device->device_uid }}" method="POST">
+                <form id="deleteForm" action="/dashboard/device/{{ $device->uid }}" method="POST">
                     @method('put')
                     @csrf
                     <div class="form-group">
                         <label for="idDevice_uid">UID Perangkat</label>
-                        <input type="text" class="form-control" id="idDevice_uid" placeholder="{{ $device->device_uid }}" readonly>
+                        <input type="text" class="form-control" id="idDevice_uid" placeholder="{{ $device->uid }}" readonly>
                     </div>
                     <div class="form-group">
                       <label for="idDeviceName">Nama Perangkat</label>
                       <input type="text" class="form-control" id="idDeviceName" placeholder="Masukan nama perangkat..." name="device_name" value="{{ old('device_name', $device->device_name) }}">
                     </div>
                     <div class="form-group">
-                        <label for="idDeviceDept">Nama Departement</label>
+                        <label for="idDeviceDept">Nama Departement Perangkat</label>
                         <input type="text" class="form-control" id="idDeviceDept" placeholder="Masukan nama departemen..." name="device_dept" value="{{ old('device_dept', $device->device_dept) }}">
                      </div>
                      <div class="form-group">
@@ -36,8 +36,8 @@
             </div>
             <div class="card-footer">
                 <div class="d-flex align-items-center">
-                    <a class="btn btn-secondary btn-round" href="/dashboard/device">Kembali</a>
-                    <button type="button" id="deleteButton" class="btn btn-primary btn-round ml-auto">Ubah</button>
+                    <a class="btn btn-primary btn-round" href="/dashboard/device">Kembali</a>
+                    <button type="button" id="deleteButton" class="btn btn-warning btn-round ml-auto">Ubah</button>
                 </div>
             </div>
         </div>

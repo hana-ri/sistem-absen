@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h4 class="card-title">Daftar Informasi Pengguna</h4>
+                                <h4 class="card-title">Daftar Informasi</h4>
                                 <a class="btn btn-primary btn-round ml-auto" href="/dashboard/user-info/create"><i class="fa fa-plus"> </i>Tambah Data</a>
                             </div>
                         </div>
@@ -22,7 +22,7 @@
                                             <th>Peran</th>
                                             <th>Status</th>
                                             <th>Kartu UID</th>
-                                            <th>Unik identitas</th>
+                                            <th>Unik Identitas</th>
                                             <th style="width: 10%">Action</th>
                                         </tr>
                                     </thead>
@@ -32,11 +32,11 @@
                                         @else
                                         @foreach ($userinfos as $userinfo)
                                         <tr>
-                                            <td>1</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $userinfo->name }}</td>
-                                            <td>{{ $userinfo->Role }}</td>
+                                            <td>{{ $userinfo->role }}</td>
                                             <td>{{ ($userinfo->status) ? 'Aktif' : 'Pasif' }}</td>
-                                            <td>{{ $userinfo->card_uid }}</td>
+                                            <td>{{ $userinfo->user_card_uid }}</td>
                                             <td>{{ $userinfo->unique_identity }}</td>
                                             <td>
                                                 <div class="form-button-action">

@@ -15,10 +15,10 @@ class CreateUserInfosTable extends Migration
     {
         Schema::create('user_infos', function (Blueprint $table) {
             $table->id();
-            $table->string('card_uid')->foreign()->references('card_uid')->on('user_cards');
+            $table->string('user_card_uid')->foreign()->references('uid')->on('user_cards')->nullable();
             $table->string('name');
             $table->enum('gender', ['L', 'P']);
-            $table->enum('Role', ['Pelajar', 'Guru', 'Staff']);
+            $table->enum('role', ['Pelajar', 'Guru', 'Staff']);
             $table->boolean('status')->default(1);
             $table->text('address')->nullable();
             $table->string('DOB')->nullable();

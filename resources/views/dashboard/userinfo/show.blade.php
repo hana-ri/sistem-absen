@@ -10,8 +10,6 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="userInfoForm" action="/dashboard/user-info" method="POST">
-                    @csrf
                     <div class="row">
                         <div class="col-lg-4 col-md-6">
                             <div class="form-group">
@@ -36,13 +34,13 @@
                         <div class="col-lg-8 col-md-6">
                             <div class="form-group">
                                 <label for="idAddress">UID Kartu</label>
-                                <input type="text" name="card_uid" class="form-control" value="{{ $userInfo->card_uid }}" readonly>
+                                <input type="text" class="form-control" value="{{ $userInfo->user_card_uid }}" readonly>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="form-group">
                                 <label for="idAddress" name="gender">Gender</label>
-                                <input type="text" name="card_uid" class="form-control" value="{{ $userInfo->gender }}" readonly>
+                                <input type="text" class="form-control" value="{{ $userInfo->gender }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -50,30 +48,52 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="idAddress">Status</label>
-                                <input type="text" name="card_uid" class="form-control" value="{{ ($userInfo->card_uid) ? 'Aktif' : 'Pasif' }}" readonly>
+                                <input type="text" class="form-control" value="{{ ($userInfo->uid) ? 'Aktif' : 'Pasif' }}" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="idAddress">Role</label>
-                                <input type="text" name="card_uid" class="form-control" value="{{ $userInfo->Role }}" readonly>
+                                <label for="idAddress">Peran</label>
+                                <input type="text" class="form-control" value="{{ $userInfo->role }}" readonly>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="idAddress">Address</label>
+                                <label for="idAddress">Alamat</label>
                                 <textarea class="form-control" id="idAddress" rows="2" name="address" readonly>{{ $userInfo->address }}</textarea>
                             </div>
                         </div>
                     </div>
-                  </form>
+                    <hr>
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table id="add-row" class="display table table-striped table-hover" >
+                                <thead>
+                                    <tr>
+                                        <th>Nama Perangkat</th>
+                                        <th>Departemen Perangkat</th>
+                                        <th>UID Kartu</th>
+                                        <th>Status Kartu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ ($userInfo->userCard) ? $userInfo->userCard->device->device_name : 'Belum ditautkan'}}</td>
+                                        <td>{{ ($userInfo->userCard) ? $userInfo->userCard->device->device_dept : 'Belum ditautkan' }}</td>
+                                        <td>{{ ($userInfo->userCard) ? $userInfo->userCard->uid : 'Belum ditautkan' }}</td>
+                                        <td>{{ ($userInfo->userCard) ? ($userInfo->userCard->card_status) ? 'Aktif' : 'Pasif' : 'Belum ditautkan'}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
             </div>
             <div class="card-footer">
                 <div class="d-flex align-items-center">
-                    <a class="btn btn-secondary btn-round" href="/dashboard/user-info">Kembali</a>
-                    <a class="btn btn-warning btn-round ml-auto" href="/dashboard/user-info/{{ $userInfo->id }}/edit">Update</a>
+                    <a class="btn btn-primary btn-round" href="/dashboard/user-info">Kembali</a>
+                    <a class="btn btn-warning btn-round ml-auto" href="/dashboard/user-info/{{ $userInfo->id }}/edit">Perbarui</a>
                 </div>
             </div>
         </div>

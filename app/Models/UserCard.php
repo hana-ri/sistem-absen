@@ -10,7 +10,25 @@ class UserCard extends Model
     use HasFactory;
 
     protected $table = 'user_cards';
+
     protected $guarded = [];
-    protected $primaryKey = 'card_uid';
+
+    protected $primaryKey = 'uid';
+
     public $incrementing = false;
+
+    public function device()
+    {
+        return $this->belongsTo(Device::class);
+    }
+
+    public function userInfo()
+    {
+        return $this->hasOne(UserInfo::class);
+    }
+
+    public function userLog()
+    {
+        return $this->hasMany(UserLog::class);
+    }
 }

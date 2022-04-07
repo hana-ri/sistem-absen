@@ -61,10 +61,10 @@
                                 <table id="add-row" class="display table table-striped table-hover" >
                                     <thead>
                                         <tr>
-                                            <th>Device Name</th>
-                                            <th>Device Dept</th>
-                                            <th>Device Mode</th>
-                                            <th>Card UID</th>
+                                            <th>Nama Perangkat</th>
+                                            <th>Departemen Perangkat</th>
+                                            <th>Status Perangkat</th>
+                                            <th>UID Perangkat</th>
                                             <th style="width: 10%">Action</th>
                                         </tr>
                                     </thead>
@@ -77,14 +77,16 @@
                                             <td>{{ $device->device_name }}</td>
                                             <td>{{ $device->device_dept }}</td>
                                             <td>{{ ($device->device_mode) ? 'Aktif' : 'Pasif' }}</td>
-                                            <input type="hidden" value="{{ $device->device_uid }}" id="myInput">
-                                            <td>{{ $device->device_uid }}<button class="btn btn-link btn-secondary" onclick="myFunction()"><i class="fa fa-copy"></i></button> </td>
+                                            <td>{{ $device->uid }}</td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a class="btn btn-link btn-warning btn-lg" href="/dashboard/device/{{ $device->device_uid }}/edit">
+                                                    <a class="btn btn-link btn-secondary btn-lg" href="/dashboard/device/{{ $device->uid }}">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <a class="btn btn-link btn-warning btn-lg" href="/dashboard/device/{{ $device->uid }}/edit">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <button type="button" class="btn btn-link btn-danger" data-toggle="modal" data-target="#deleteModal" data-whatever="{{ $device->device_uid }}">
+                                                    <button type="button" class="btn btn-link btn-danger" data-toggle="modal" data-target="#deleteModal" data-whatever="{{ $device->uid }}">
                                                         <i class="fa fa-times"></i>
                                                     </button>
                                                 </div>
@@ -121,14 +123,5 @@
             });
         });
     });
-
-
-    function myFunction() {
-        var copyText = document.getElementById("myInput");
-
-        navigator.clipboard.writeText(copyText.value);
-
-        alert("Copied : " + copyText.value);
-    } 
 </script>
 @endpush

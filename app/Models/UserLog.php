@@ -12,4 +12,9 @@ class UserLog extends Model
 
     protected $guarded = [];
     public $timestamps = false;
+
+    public function UserCard()
+    {
+        return $this->belongsTo(UserCard::class);
+    }
 }

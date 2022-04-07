@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Device;
+use App\Models\UserCard;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 
@@ -46,7 +47,7 @@ class DeviceController extends Controller
         ];
         
         $validatedData = $request->validate($rules);
-        $validatedData["device_uid"] = $uuid;
+        $validatedData["uid"] = $uuid;
 
         // dd($request->all());
 
@@ -67,7 +68,11 @@ class DeviceController extends Controller
      */
     public function show(Device $device)
     {
-        //
+        // dd(Device::find($device->uid)->UserCard);
+        return view('/dashboard/device/show', [
+            'device' => $device,
+            'userCards' => $device->userCard,
+        ]);
     }
 
     /**
@@ -100,7 +105,7 @@ class DeviceController extends Controller
         
         $validatedData = $request->validate($rules);
 
-        $result = Device::where('device_uid', $device->device_uid)->update($validatedData);
+        $result = Device::where('uid', $device->uid)->update($validatedData);
 
         if (!$result) {
             return 'error';
@@ -117,7 +122,7 @@ class DeviceController extends Controller
      */
     public function destroy(Device $device)
     {
-        Device::destroy($device->device_uid);
+        Device::destroy($device->uid);
         return redirect('/dashboard/device');
     }
 }
