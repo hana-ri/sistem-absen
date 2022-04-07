@@ -33,6 +33,7 @@ class AbsenController extends Controller
 						if ($dataUserCard->card_status) {
 							// Cek apakah data card_uid sama dengan yang ada pada DB atau 0
 							if ($dataUserCard->uid == request('card_uid') || $dataUserCard->uid == 0) {
+								// Cek apakah sudah melakukan absen sudah absen hari ini
 								if (UserLog::firstWhere(['user_card_uid' => $dataUserCard->uid, 'check_in_date' => $dt->toDateString(), 'card_out' => 1])) {
 									return 'Anda sudah melakukan time in hari ini!';
 								} else {

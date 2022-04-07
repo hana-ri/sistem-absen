@@ -17,6 +17,8 @@ class UserCard extends Model
 
     public $incrementing = false;
 
+    protected $with = ['device'];
+
     public function device()
     {
         return $this->belongsTo(Device::class);
