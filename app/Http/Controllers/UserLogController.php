@@ -21,6 +21,25 @@ class UserLogController extends Controller
 
     public function index()
     {
+
+        if (request('start_date') && request('end_date')) {
+            if(request('user_card_uid')) {
+                return view('/dashboard/userlog/index', [
+                    'userlogs' => UserLog::where('user_card_uid', '=' ,request('user_card_uid'))->whereBetween('check_in_date', [request('start_date'), request('end_date') ])->get(),
+                ]);       
+            }
+            return view('/dashboard/userlog/index', [
+                'userlogs' => UserLog::whereBetween('check_in_date', [request('start_date'), request('end_date') ])->get(),
+            ]);            
+        }
+
+        if (request('user_card_uid')) {
+            return view('/dashboard/userlog/index', [
+                'userlogs' => UserLog::where('user_card_uid', '=' ,request('user_card_uid'))->get(),
+            ]);            
+        }
+
+
         return view('/dashboard/userlog/index', [
             'userlogs' => UserLog::all(),
         ]);
