@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\UserLog;
 
 use Carbon\Carbon;
+use App\Exports\UserLogView;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserLogController extends Controller
 {
@@ -21,7 +23,6 @@ class UserLogController extends Controller
 
     public function index()
     {
-
         if (request('start_date') && request('end_date')) {
             if(request('user_card_uid')) {
                 return view('/dashboard/userlog/index', [
@@ -35,13 +36,16 @@ class UserLogController extends Controller
 
         if (request('user_card_uid')) {
             return view('/dashboard/userlog/index', [
-                'userlogs' => UserLog::where('user_card_uid', '=' ,request('user_card_uid'))->get(),
+                'userlogs' => UserLog::where('user_card_uid', '=', request('user_card_uid'))->get(),
             ]);            
         }
-
-
         return view('/dashboard/userlog/index', [
             'userlogs' => UserLog::all(),
         ]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new UserLogView, 'UserLog.xlsx');
     }
 }

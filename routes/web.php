@@ -31,5 +31,6 @@ Route::resource('/dashboard/user-card', UserCardController::class);
 Route::get('/absen/get', [AbsenController::class, 'absen']);
 
 Route::get('/dashboard/userlog', [UserLogController::class, 'index']);
+Route::get('/dashboard/userlog/export', [UserLogController::class, 'export']);
 
 Route::get('/dashboard', [UserLogController::class, 'dashboard']);
