@@ -14,7 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard/user/index', [
+            'users' => User::all(),
+        ]);
     }
 
     /**
@@ -57,7 +59,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('dashboard/user/edit', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -69,7 +73,33 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+
+        $rules = [
+            'name' => 'required|max:120',
+            'role' => 'required',
+            'status' => 'required'
+        ];
+        
+        if (isset($request->password)) {
+            $rules['password'] = 'required|min:6|max:255|confirmed';
+        }
+
+        if ($request->email !== $user->email) {
+            $rules['email'] = 'required|email|unique:users';
+        }
+        
+        $validatedData = $request->validate($rules); 
+
+        // dd($validatedData);
+
+        if (!empty($request->password)) {
+            $validatedData['password'] = bcrypt($validatedData['password']);
+        }
+        
+
+        User::where('id', $user->id)->update($validatedData);
+
+        return redirect('/dashboard/users');
     }
 
     /**
@@ -80,6 +110,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+
+        return redirect('/dashboard/users');
     }
 }

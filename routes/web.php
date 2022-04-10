@@ -9,6 +9,7 @@ use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\UserCardController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\LoginUserController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::group(['middleware' => ['auth', 'can:isAdmin']], function() {
     Route::resource('/dashboard/device', DeviceController::class);
     Route::resource('/dashboard/user-card', UserCardController::class);
     Route::resource('/dashboard/user-info', UserInfoController::class);
+    Route::resource('/dashboard/users', UserController::class);
 });
 
 

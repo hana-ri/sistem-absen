@@ -42,6 +42,11 @@
 										</li>
 									@endcan
 									@can('isAdmin')
+										<li class="{{ Request::is('dashboard/users*') ? 'active' : ''}}">
+											<a href="/dashboard/users">
+												<span class="sub-item">Pengguna</span>
+											</a>
+										</li>
 										<li class="{{ Request::is('dashboard/user-info*') ? 'active' : ''}}">
 											<a href="/dashboard/user-info">
 												<span class="sub-item">Informasi Pengguna</span>
@@ -55,11 +60,6 @@
 										<li class="{{ Request::is('dashboard/user-card*') ? 'active' : ''}}">
 											<a href="/dashboard/user-card">
 												<span class="sub-item">Kartu</span>
-											</a>
-										</li>
-										<li class="{{ Request::is('dashboard/users*') ? 'active' : ''}}">
-											<a href="/dashboard/users">
-												<span class="sub-item">Pengguna</span>
 											</a>
 										</li>
 										<li class="{{ Request::is('dashboard/userlog*') ? 'active' : ''}}">
