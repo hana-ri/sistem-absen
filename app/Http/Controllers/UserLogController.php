@@ -9,6 +9,8 @@ use Carbon\Carbon;
 use App\Exports\UserLogView;
 use Maatwebsite\Excel\Facades\Excel;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class UserLogController extends Controller
 {
     public function dashboard()

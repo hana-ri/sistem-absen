@@ -9,7 +9,11 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Daftar Informasi</h4>
-                                <a class="btn btn-primary btn-round ml-auto" href="/dashboard/user-info/create"><i class="fa fa-plus"> </i>Tambah Data</a>
+                                @can('isAdmin')
+                                    <a class="btn btn-primary btn-round ml-auto" href="/dashboard/user-info/create">
+                                        <i class="fa fa-plus"> </i>Tambah Data
+                                    </a>
+                                @endcan
                             </div>
                         </div>
                         <div class="card-body">
@@ -40,15 +44,22 @@
                                             <td>{{ $userinfo->unique_identity }}</td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a class="btn btn-link btn-secondary btn-lg" href="/dashboard/user-info/{{ $userinfo->id }}">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                    <a class="btn btn-link btn-warning btn-lg" href="/dashboard/user-info/{{ $userinfo->id }}/edit">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                    <button type="button" class="btn btn-link btn-danger" data-toggle="modal" data-target="#deleteModal" data-whatever="{{ $userinfo->id }}">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
+                                                    @can('isStaff')
+                                                        <a class="btn btn-link btn-secondary btn-lg" href="/dashboard/anyshow/{{ $userinfo->id }}">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                    @endcan
+                                                    @can('isAdmin')
+                                                        <a class="btn btn-link btn-secondary btn-lg" href="/dashboard/user-info/{{ $userinfo->id }}">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                        <a class="btn btn-link btn-warning btn-lg" href="/dashboard/user-info/{{ $userinfo->id }}/edit">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                        <button type="button" class="btn btn-link btn-danger" data-toggle="modal" data-target="#deleteModal" data-whatever="{{ $userinfo->id }}">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>

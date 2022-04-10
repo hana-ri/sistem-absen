@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\UserLogController;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\UserCardController;
+use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\LoginUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,15 +25,45 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/dashboard/device', DeviceController::class);
 
-Route::resource('/dashboard/user-info', UserInfoController::class);
+/**
+ * Rute Dashboard
+ */
 
-Route::resource('/dashboard/user-card', UserCardController::class);
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/dashboard', [UserLogController::class, 'dashboard']);  
+});
 
+/**
+ * Rute untuk role admin
+ */
+Route::group(['middleware' => ['auth', 'can:isAdmin']], function() {
+    Route::get('/dashboard/userlog', [UserLogController::class, 'index']);
+    Route::get('/dashboard/userlog/export', [UserLogController::class, 'export']);
+    Route::resource('/dashboard/device', DeviceController::class);
+    Route::resource('/dashboard/user-card', UserCardController::class);
+    Route::resource('/dashboard/user-info', UserInfoController::class);
+});
+
+
+/**
+ * Route untuk role staff
+ */
+Route::group(['middleware' => ['auth', 'can:isStaff']], function() {
+    Route::get('/dashboard/userinfo', [UserInfoController::class, 'anyIndex']);
+    Route::get('/dashboard/anyshow/{userInfo}', [UserInfoController::class, 'anyShow']);
+});
+
+/**
+ * Rute Absen
+ */
 Route::get('/absen/get', [AbsenController::class, 'absen']);
 
-Route::get('/dashboard/userlog', [UserLogController::class, 'index']);
-Route::get('/dashboard/userlog/export', [UserLogController::class, 'export']);
-
-Route::get('/dashboard', [UserLogController::class, 'dashboard']);
+/** 
+ * Rute Registrasi dan login
+*/
+Route::get('/register', [RegisterUserController::class, 'create'])->middleware('guest');
+Route::post('/register', [RegisterUserController::class, 'store']);
+Route::get('/login', [LoginUserController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/login', [LoginUserController::class, 'authenticate']);
+Route::post('/logout', [LoginUserController::class, 'logout']);

@@ -41,19 +41,19 @@
             <form action="/dashboard/userlog" method="GET" id="filterForm">
                 <div class="form-group">
                     <label for="idUniqueIdentity">UID Kartu</label>
-                    <input type="text" name="user_card_uid" class="form-control" id="idUniqueIdentity">
+                    <input type="text" name="user_card_uid" class="form-control" id="idUniqueIdentity" value="{{ request('user_card_uid') }}">
                 </div>
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="idStartDate">Tanggal Awal</label>
-                            <input type="date" name="start_date" class="form-control" id="idStartDate">
+                            <input type="date" name="start_date" class="form-control" id="idStartDate" value="{{ request('start_date') }}">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="idEndDate">Tanggal Akhir</label>
-                            <input type="date" name="end_date" class="form-control" id="idEndDate">
+                            <input type="date" name="end_date" class="form-control" id="idEndDate" value="{{ request('end_date') }}">
                         </div>    
                     </div>
                 </div>
@@ -78,19 +78,23 @@
           </button>
         </div>
         <div class="modal-body">
-            <p class="text-center">Rentang Data</p>
             <form action="/dashboard/userlog/export" method="GET" id="exportForm">
+                <div class="form-group">
+                    <label for="idUniqueIdentity">UID Kartu</label>
+                    <input type="text" name="user_card_uid" class="form-control" id="idUniqueIdentity" value="{{ request('user_card_uid') }}">
+                </div>
+                <p class="text-center">Rentang Data</p>
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="idStartDate">Tanggal Awal</label>
-                            <input type="date" name="start_date" class="form-control" id="idStartDate">
+                            <input type="date" name="start_date" class="form-control" id="idStartDate" value="{{ request('start_date') }}">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="idEndDate">Tanggal Akhir</label>
-                            <input type="date" name="end_date" class="form-control" id="idEndDate">
+                            <input type="date" name="end_date" class="form-control" id="idEndDate" value="{{ request('end_date') }}">
                         </div>    
                     </div>
                 </div>

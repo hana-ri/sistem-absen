@@ -25,6 +25,7 @@
 							</span>
 							<h4 class="text-section">Daftar Opsi</h4>
 						</li>
+						@cannot('isUser')
 						<li class="nav-item {{ Request::is('dashboard/*') ? 'active' : ''}}">
 							<a data-toggle="collapse" href="#submenu">
 								<i class="fas fa-bars"></i>
@@ -33,34 +34,44 @@
 							</a>
 							<div class="collapse" id="submenu">
 								<ul class="nav nav-collapse">
-									<li class="{{ Request::is('dashboard/users*') ? 'active' : ''}}">
-										<a href="/dashboard/users">
-											<span class="sub-item">Pengguna</span>
-										</a>
-									</li>
-									<li class="{{ Request::is('dashboard/user-info*') ? 'active' : ''}}">
-										<a href="/dashboard/user-info">
-											<span class="sub-item">Informasi Pengguna</span>
-										</a>
-									</li>
-									<li class="{{ Request::is('dashboard/device*') ? 'active' : ''}}">
-										<a href="/dashboard/device">
-											<span class="sub-item">Perangkat</span>
-										</a>
-									</li>
-									<li class="{{ Request::is('dashboard/user-card*') ? 'active' : ''}}">
-										<a href="/dashboard/user-card">
-											<span class="sub-item">Kartu</span>
-										</a>
-									</li>
-									<li class="{{ Request::is('dashboard/userlog*') ? 'active' : ''}}">
-										<a href="/dashboard/userlog">
-											<span class="sub-item">Histori Pengguna</span>
-										</a>
-									</li>
+									@can('isStaff')
+										<li class="{{ Request::is('dashboard/userinfo*') ? 'active' : ''}}">
+											<a href="/dashboard/userinfo">
+												<span class="sub-item">Informasi Pengguna</span>
+											</a>
+										</li>
+									@endcan
+									@can('isAdmin')
+										<li class="{{ Request::is('dashboard/user-info*') ? 'active' : ''}}">
+											<a href="/dashboard/user-info">
+												<span class="sub-item">Informasi Pengguna</span>
+											</a>
+										</li>
+										<li class="{{ Request::is('dashboard/device*') ? 'active' : ''}}">
+											<a href="/dashboard/device">
+												<span class="sub-item">Perangkat</span>
+											</a>
+										</li>
+										<li class="{{ Request::is('dashboard/user-card*') ? 'active' : ''}}">
+											<a href="/dashboard/user-card">
+												<span class="sub-item">Kartu</span>
+											</a>
+										</li>
+										<li class="{{ Request::is('dashboard/users*') ? 'active' : ''}}">
+											<a href="/dashboard/users">
+												<span class="sub-item">Pengguna</span>
+											</a>
+										</li>
+										<li class="{{ Request::is('dashboard/userlog*') ? 'active' : ''}}">
+											<a href="/dashboard/userlog">
+												<span class="sub-item">Histori Pengguna</span>
+											</a>
+										</li>
+									@endcan
 								</ul>
 							</div>
-						</li>
+						</li>							
+						@endcannot
 					</ul>
 				</div>
 			</div>

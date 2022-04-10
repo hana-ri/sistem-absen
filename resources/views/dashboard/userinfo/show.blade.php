@@ -90,12 +90,14 @@
                         </div>
                     </div>
             </div>
+            @can('isAdmin')
             <div class="card-footer">
                 <div class="d-flex align-items-center">
                     <a class="btn btn-primary btn-round" href="/dashboard/user-info">Kembali</a>
                     <a class="btn btn-warning btn-round ml-auto" href="/dashboard/user-info/{{ $userInfo->id }}/edit">Perbarui</a>
                 </div>
             </div>
+            @endcan
         </div>
     </div>
 </div>

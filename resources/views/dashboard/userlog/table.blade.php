@@ -1,4 +1,5 @@
-    <table id="add-row" class="display table table-striped table-hover">
+
+<table id="add-row" class="display table table-striped table-hover">
         <thead>
             <tr>
                 <th>No</th>
@@ -17,16 +18,17 @@
         <tbody>
             @foreach ($userlogs as $userlog)
             <tr>
+                {{-- @dd($userlog->user_card_uid) --}}
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $userlog->userCard->userInfo->name }}</td>
-                <td>{{ $userlog->userCard->userInfo->role }}</td>
+                <td>{{ ($userlog->user_card_uid) ? ($userlog->userCard->userInfo) ? $userlog->userCard->userInfo->name : 'Tidak terkait' : 'Tidak terkait' }}</td>
+                <td>{{ ($userlog->user_card_uid) ? ($userlog->userCard->userInfo) ? $userlog->userCard->userInfo->role : 'Tidak terkait' : 'Tidak terkait' }}</td>
                 <td>{{ $userlog->user_card_uid }}</td>
-                <td>{{ $userlog->UserCard->userInfo->unique_identity }}</td>
+                <td>{{ ($userlog->user_card_uid) ? ($userlog->userCard->userInfo) ? $userlog->UserCard->userInfo->unique_identity : 'Tidak terkait' : 'Tidak terkait'}}</td>
                 <td>{{ $userlog->check_in_date }}</td>
                 <td>{{ $userlog->time_in }}</td>
                 <td>{{ $userlog->time_out }}</td>
-                <td>{{ $userlog->userCard->device->device_dept }}</td>
-                <td>{{ $userlog->userCard->device->device_name }}</td>
+                <td>{{ ($userlog->user_card_uid) ? ($userlog->userCard->userInfo) ? $userlog->userCard->device->device_dept : 'Tidak terkait' : 'Tidak terkait' }}</td>
+                <td>{{ ($userlog->user_card_uid) ? ($userlog->userCard->userInfo) ? $userlog->userCard->device->device_name : 'Tidak terkait' : 'Tidak terkait' }}</td>
                 <td>
                     <div class="form-button-action">
                         <a class="btn btn-link btn-warning btn-lg" href="/dashboard/device/{{ $userlog->id }}/edit">

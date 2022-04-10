@@ -137,4 +137,24 @@ class UserInfoController extends Controller
 
         return redirect('/dashboard/user-info');
     }
+
+    public function anyIndex()
+    {
+        $siswa = 'Pelajar';
+
+        // dd(UserInfo::where('role', $siswa)->get());
+
+        return view('/dashboard/userinfo/index', [
+            // 'userinfos' => UserInfo::all(),
+            'userinfos' => UserInfo::where('role', $siswa)->get(),
+        ]);
+    }
+
+    public function anyShow(UserInfo $userInfo)
+    {
+        return view('/dashboard/userinfo/show', [
+            'userInfo' => $userInfo
+        ]);
+    }
 }
+
