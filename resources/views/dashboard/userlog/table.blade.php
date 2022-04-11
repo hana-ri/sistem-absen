@@ -18,7 +18,6 @@
         <tbody>
             @foreach ($userlogs as $userlog)
             <tr>
-                {{-- @dd($userlog->user_card_uid) --}}
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ ($userlog->user_card_uid) ? ($userlog->userCard->userInfo) ? $userlog->userCard->userInfo->name : 'Tidak terkait' : 'Tidak terkait' }}</td>
                 <td>{{ ($userlog->user_card_uid) ? ($userlog->userCard->userInfo) ? $userlog->userCard->userInfo->role : 'Tidak terkait' : 'Tidak terkait' }}</td>

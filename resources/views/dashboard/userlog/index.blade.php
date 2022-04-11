@@ -1,4 +1,4 @@
-@extends('dashboard\layouts\main')
+@extends('/dashboard/layouts/main')
 
 @section('container')
             <div class="row">
@@ -115,7 +115,7 @@
 @endpush
 
 @push('scripts')
-<script src="{{ asset('vendor\template\js\plugin\datatables\datatables.min.js') }}"></script>
+<script src="{{ asset('/vendor/template/js/plugin/datatables/datatables.min.js') }}"></script>
 <script>
     $(document).ready(function() {
         $('#add-row').DataTable({
