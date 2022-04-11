@@ -11,11 +11,13 @@ class UserCard extends Model
 
     protected $table = 'user_cards';
 
-    protected $guarded = [];
-
     protected $primaryKey = 'uid';
+    
+    protected $keyType = 'string';
 
     public $incrementing = false;
+    
+    protected $guarded = [];
 
     protected $with = ['device'];
 

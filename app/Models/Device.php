@@ -11,11 +11,13 @@ class Device extends Model
     
     protected $table = 'devices';
 
-    protected $guarded = [];
-    
     protected $primaryKey = 'uid';
 
+    protected $keyType = 'string';
+
     public $incrementing = false;
+    
+    protected $guarded = [];
 
     public function UserCard()
     {
