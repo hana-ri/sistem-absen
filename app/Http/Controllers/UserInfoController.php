@@ -28,7 +28,7 @@ class UserInfoController extends Controller
     public function create()
     {
         return view('/dashboard/userinfo/create', [
-            'userCards' => UserCard::where('card_status', '!=', 1)->get(),
+            'userCards' => UserCard::where('card_status', '!=', true)->get(),
         ]);
     }
 
@@ -142,10 +142,7 @@ class UserInfoController extends Controller
     {
         $siswa = 'Pelajar';
 
-        // dd(UserInfo::where('role', $siswa)->get());
-
         return view('/dashboard/userinfo/index', [
-            // 'userinfos' => UserInfo::all(),
             'userinfos' => UserInfo::where('role', $siswa)->get(),
         ]);
     }
