@@ -1,4 +1,4 @@
-@extends('dashboard/layouts/main')
+@extends('/dashboard/layouts/main')
 
 @section('container')
 <div class="row">
@@ -23,6 +23,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if (!$users)
+                                
+                            @else
                             @foreach ($users as $user)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
@@ -42,6 +45,7 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -49,7 +53,7 @@
         </div>
     </div>
 </div>
-@include('dashboard/partials/deleteModal')
+@include('/dashboard/partials/deleteModal')
 @endsection
 
 @push('title')
