@@ -29,7 +29,7 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role }}</td>
-                                <td>{{ $user->status }}</td>
+                                <td><span class="badge {{ ($user->status) ? 'badge-success' : 'badge-warning' }}">{{ ($user->status) ? 'Aktif' : 'Pasif' }}</span></td>
                                 <td>
                                     <div class="form-button-action">
                                         <a class="btn btn-link btn-warning btn-lg" href="/dashboard/users/{{ $user->id }}/edit">
@@ -51,3 +51,7 @@
 </div>
 @include('dashboard/partials/deleteModal')
 @endsection
+
+@push('title')
+    <title>Akun</title>
+@endpush    

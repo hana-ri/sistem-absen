@@ -39,7 +39,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $userinfo->name }}</td>
                                             <td>{{ $userinfo->role }}</td>
-                                            <td>{{ ($userinfo->status) ? 'Aktif' : 'Pasif' }}</td>
+                                            <td><span class="badge {{ ($userinfo->status) ? 'badge-success' : 'badge-warning' }}">{{ ($userinfo->status) ? 'Aktif' : 'Pasif' }}</span></td>
                                             <td>{{ $userinfo->user_card_uid }}</td>
                                             <td>{{ $userinfo->unique_identity }}</td>
                                             <td>
@@ -85,7 +85,7 @@
 <script>
     $(document).ready(function() {
         $('#add-row').DataTable({
-            "pageLength": 5,
+            "pageLength": 10,
         });
         
         $(document).ready(function(){

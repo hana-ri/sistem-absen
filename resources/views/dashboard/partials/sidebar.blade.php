@@ -44,7 +44,7 @@
 									@can('isAdmin')
 										<li class="{{ Request::is('dashboard/users*') ? 'active' : ''}}">
 											<a href="/dashboard/users">
-												<span class="sub-item">Pengguna</span>
+												<span class="sub-item">Akun</span>
 											</a>
 										</li>
 										<li class="{{ Request::is('dashboard/user-info*') ? 'active' : ''}}">

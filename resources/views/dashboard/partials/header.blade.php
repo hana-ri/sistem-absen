@@ -91,7 +91,7 @@
                                     <div class="avatar-lg"><img src="{{ asset('vendor/template/img/profile.jpg') }}" alt="image profile" class="avatar-img rounded"></div>
                                     <div class="u-text">
                                         <h4>{{ auth()->user()->name }} - {{ auth()->user()->role }}</h4>
-                                        <p class="text-muted">{{ auth()->user()->email }}</p><a href="#" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                        <p class="text-muted">{{ auth()->user()->email }}</p><a href="/dashboard/users/{{ auth()->user()->id }}/edit" class="btn btn-xs btn-secondary btn-sm">Edit Profile</a>
                                     </div>
                                 </div>
                                 @endauth

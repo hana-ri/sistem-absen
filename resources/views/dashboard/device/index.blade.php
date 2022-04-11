@@ -76,7 +76,7 @@
                                         <tr>
                                             <td>{{ $device->device_name }}</td>
                                             <td>{{ $device->device_dept }}</td>
-                                            <td>{{ ($device->device_mode) ? 'Aktif' : 'Pasif' }}</td>
+                                            <td><span class="badge {{ ($device->device_mode) ? 'badge-success' : 'badge-warning' }}">{{ ($device->device_mode) ? 'Aktif' : 'Pasif' }}</span></td>
                                             <td>{{ $device->uid }}</td>
                                             <td>
                                                 <div class="form-button-action">
@@ -114,7 +114,7 @@
 <script>
     $(document).ready(function() {
         $('#add-row').DataTable({
-            "pageLength": 5,
+            "pageLength": 10,
         });
         
         $(document).ready(function(){

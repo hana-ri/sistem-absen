@@ -31,7 +31,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ ($userCard->userInfo) ? $userCard->userInfo->name : 'Belum ditautkan' }}</td>
                                             <td>{{ $userCard->uid }}</td>
-                                            <td>{{ ($userCard->card_status) ? 'Aktif' : 'Pasif' }}</td>
+                                            <td><span class="badge {{ ($userCard->card_status) ? 'badge-success' : 'badge-warning' }}">{{ ($userCard->card_status) ? 'Aktif' : 'Pasif' }}</span></td>
                                             <td>{{ $userCard->device->device_dept }}</td>
                                             <td>
                                                 <div class="form-button-action">
@@ -66,7 +66,7 @@
 <script>
     $(document).ready(function() {
         $('#add-row').DataTable({
-            "pageLength": 5,
+            "pageLength": 10,
         });
     });
 </script>
