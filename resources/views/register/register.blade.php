@@ -48,12 +48,13 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="inputPassword" placeholder="Kata Sandi" name="password">
+                                        <input type="password" class="form-control form-control-user" id="inputPassword"
+                                            placeholder="Kata Sandi" name="password">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="repeatPassword" placeholder="Masukan Ulang Kata Sandi" name="password_confirmation">
+                                            id="repeatPassword" placeholder="Masukan Ulang Kata Sandi"
+                                            name="password_confirmation">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">Daftar</button>

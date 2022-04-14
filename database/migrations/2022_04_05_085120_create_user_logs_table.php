@@ -17,8 +17,8 @@ class CreateUserLogsTable extends Migration
             $table->id();
             $table->string('user_card_uid')->foreign()->references('uid')->on('user_cards');
             $table->date('check_in_date')->nullable();
-            $table->string('time_in', 10)->nullable();
-            $table->string('time_out', 10)->nullable();
+            $table->time('time_in', $precision = 0)->nullable();
+            $table->time('time_out', $precision = 0)->nullable();
             $table->boolean('card_out')->default(0);
         });
     }
