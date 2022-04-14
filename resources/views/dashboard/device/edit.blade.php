@@ -49,6 +49,11 @@
         </div>
     </div>
 @endsection
+
+@push('title')
+    <title>Perangkat</title>
+@endpush
+
 @push('scripts')
     <script>
         $(document).ready(function() {

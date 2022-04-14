@@ -20,13 +20,13 @@ class AbsenController extends Controller
 		if (request('card_uid') && request('device_token')) {
 			// Cek apakah device_uid tersebut terdaftar/tidak
 			if (!Device::where('uid', request('device_token'))->exists()) {
-				return "Device tidak terdaftar";
+				return "[Server] : UID Perangkat tidak terdaftar";
 			} else {
 				$dataDevice = Device::firstWhere('uid', request('device_token'));
 				// Cek apakah device_mode berada pada attandance (1)/enrollment (0)
 				if ($dataDevice->device_mode) {
 					if (!UserCard::where('uid', request('card_uid'))->exists()) {
-						return 'kartu UID tidak dikenal';
+						return '[Server] : Kartu tidak dikenal';
 					} else {
 						$dataUserCard = UserCard::firstWhere('uid', request('card_uid'));
 						// Cek apakah card_status sudah aktif atau belum
@@ -35,7 +35,7 @@ class AbsenController extends Controller
 							if ($dataUserCard->uid == request('card_uid') || $dataUserCard->uid == 0) {
 								// Cek apakah sudah melakukan absen sudah absen hari ini
 								if (UserLog::firstWhere(['user_card_uid' => $dataUserCard->uid, 'check_in_date' => $dt->toDateString(), 'card_out' => 1])) {
-									return 'Anda sudah melakukan time in hari ini!';
+									return '[Server] : Anda sudah melakukan absen hari ini!';
 								} else {
 									// Cek apakah sudah melakukan time in/sudah
 									if (!UserLog::firstWhere(['user_card_uid' => $dataUserCard->uid, 'check_in_date' => $dt->toDateString(), 'card_out' => 0])) {
@@ -47,9 +47,9 @@ class AbsenController extends Controller
 												'time_out' => "00:00:00",
 											]);
 											if (!$result) {
-												abort(500, 'Gagal melakukan time in');
+												abort(500, '[Server] : Gagal melakukan time in');
 											}
-										return 'Time in';
+										return '[Server] :  Absen masuk';
 									} else {
 										// Melakukan Time out
 										$result = UserLog::where([
@@ -61,40 +61,39 @@ class AbsenController extends Controller
 											'card_out' => true
 										]);
 										if (!$result) {
-											abort(500, 'Gagal melakukan time out');
+											abort(500, '[Server] : Gagal melakukan time out');
 										}
-										return 'Time out';
+										return '[Server] :  Absen keluar';
 									}
 								}
 							} else {
-								return 'Not Allowed!';
+								return '[Server] : Not Allowed!';
 							}
 						} else {
-							return 'Kartu belum aktif';
+							return '[Server] : Kartu belum aktif';
 						}
 					}
 				} else {
 					// Cek apakah user_card_uid sudah pernah ditambahkan/tidak
 					if (UserCard::where('uid', request('card_uid'))->exists()) {
-						return 'Kartu sudah pernah ditambahkan';
+						return '[Server] : Kartu sudah pernah ditambahkan';
 					} else {
 						$newCard = [
                             'uid' => request('card_uid'),
                             'device_uid' => request('device_token'),
                         ];
-                        // dd($newCard);
-						// $newCard += ['card_select' => 1];
 
 						$result = UserCard::create($newCard);
 						if (!$result) {
-							abort(500, 'failed add new card');
+							abort(500, '[Server] : failed add new card');
 						}
-						return 'kartu baru ditambahkan';
+						return '[Server] : Kartu baru ditambahkan';
 					}
 				}
 			}
 		} else {
-			return redirect('/');
+			return;
+			// return redirect('/');
 		}
 	}
 }

@@ -92,7 +92,7 @@
 @endsection
 
 @push('title')
-    <title>Device</title>
+    <title>Perangkat</title>
 @endpush
 
 @push('scripts')

@@ -116,6 +116,10 @@
     </div>
 @endsection
 
+@push('title')
+    <title>Informasi Pengguna</title>
+@endpush
+
 @push('scripts')
     <script>
         $(document).ready(function() {
