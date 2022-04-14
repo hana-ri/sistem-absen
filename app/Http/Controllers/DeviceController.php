@@ -42,8 +42,8 @@ class DeviceController extends Controller
         $uuid = Uuid::uuid4()->getHex();
 
         $rules = [
-            'device_name' => 'required|max:32',
-            'device_dept' => 'required|max:32',
+            'device_name' => 'required|max:60',
+            'device_dept' => 'required|max:60',
         ];
         
         $validatedData = $request->validate($rules);

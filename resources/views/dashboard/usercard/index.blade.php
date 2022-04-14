@@ -32,7 +32,8 @@
                                             </td>
                                             <td>{{ $userCard->uid }}</td>
                                             <td><span
-                                                    class="badge {{ $userCard->card_status ? 'badge-success' : 'badge-warning' }}">{{ $userCard->card_status ? 'Aktif' : 'Pasif' }}</span>
+                                                    class="badge {{ $userCard->card_status ? 'badge-success' : 'badge-warning' }}">
+                                                    {{ $userCard->card_status ? 'Aktif' : 'Pasif' }} </span>
                                             </td>
                                             <td>{{ $userCard->device->device_dept }}</td>
                                             <td>

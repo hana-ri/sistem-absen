@@ -99,7 +99,7 @@ class UserController extends Controller
 
         User::where('id', $user->id)->update($validatedData);
 
-        return redirect('/dashboard/users');
+        return redirect('/admin/users');
     }
 
     /**
@@ -112,6 +112,6 @@ class UserController extends Controller
     {
         User::destroy($user->id);
 
-        return redirect('/dashboard/users');
+        return redirect('/admin/users');
     }
 }

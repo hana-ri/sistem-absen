@@ -39,20 +39,40 @@
                             <form class="user" action="/register" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="inputName"
-                                        placeholder="Nama Lengkap" name="name">
+                                    <input type="text"
+                                        class="form-control form-control-user @error('name') is-invalid @enderror"
+                                        id="inputName" placeholder="Nama Lengkap" name="name"
+                                        value="{{ old('name') }}">
+                                    @error('name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="inputEMail"
-                                        placeholder="Alamat email" name="email">
+                                    <input type="email"
+                                        class="form-control form-control-user @error('email') is-invalid @enderror"
+                                        id="inputEMail" placeholder="Alamat email" name="email">
+                                    @error('email')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user" id="inputPassword"
-                                            placeholder="Kata Sandi" name="password">
+                                        <input type="password"
+                                            class="form-control form-control-user @error('password') is-invalid @enderror"
+                                            id="inputPassword" placeholder="Kata Sandi" name="password">
+                                        @error('password')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
+                                        <input type="password"
+                                            class="form-control form-control-user @error('password') is-invalid @enderror"
                                             id="repeatPassword" placeholder="Masukan Ulang Kata Sandi"
                                             name="password_confirmation">
                                     </div>

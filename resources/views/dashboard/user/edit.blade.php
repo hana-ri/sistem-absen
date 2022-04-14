@@ -68,7 +68,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex align-items-center">
-                        <a class="btn btn-primary btn-round" href="/dashboard/users">Kembali</a>
+                        <a class="btn btn-primary btn-round" href="/admin/users">Kembali</a>
                         <button type="button" class="btn btn-warning btn-round ml-auto" id="updateBtn">Perbarui</button>
                     </div>
                 </div>

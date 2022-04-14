@@ -51,8 +51,6 @@ class UserInfoController extends Controller
             'address' => 'required',
         ]);
 
-        
-        // dd($result->user_card_uid);
         $result = UserInfo::create($validatedData);
         if ($result->user_card_uid != null) {
             UserCard::where('uid', $result->user_card_uid)->update(['card_status' => true]);

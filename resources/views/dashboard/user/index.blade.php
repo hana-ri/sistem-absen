@@ -37,7 +37,7 @@
                                             <td>
                                                 <div class="form-button-action">
                                                     <a class="btn btn-link btn-warning btn-lg"
-                                                        href="/dashboard/users/{{ $user->id }}/edit">
+                                                        href="/admin/users/{{ $user->id }}/edit">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <button type="button" class="btn btn-link btn-danger"

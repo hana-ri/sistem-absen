@@ -41,6 +41,18 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                                     </div>
+                                    @if (session()->has('loginError'))
+                                        <div class="alert alert-warning" role="alert">
+                                            <strong>{{ session('loginError') }}</strong> silakan cek kembali username
+                                            dan password
+                                        </div>
+                                    @endif
+                                    @if (session()->has('successRegister'))
+                                        <div class="alert alert-success" role="alert">
+                                            <strong>{{ session('successRegister') }}</strong> silakan hubungi admin
+                                            untuk mengaktifkan akun
+                                        </div>
+                                    @endif
                                     <form class="user" action="/login" method="POST">
                                         @csrf
                                         <div class="form-group">
@@ -83,3 +95,9 @@
 </body>
 
 </html>
+
+@push('scripts')
+    <script>
+        $('.alert').alert()
+    </script>
+@endpush

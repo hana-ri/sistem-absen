@@ -11,7 +11,6 @@
             <th>Waktu Keluar</th>
             <th>Departemen</th>
             <th>Nama Perangkat</th>
-            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -31,17 +30,6 @@
                 <td>{{ $userlog->user_card_uid? ($userlog->userCard->userInfo? $userlog->userCard->device->device_dept: 'Tidak terkait'): 'Tidak terkait' }}
                 </td>
                 <td>{{ $userlog->user_card_uid? ($userlog->userCard->userInfo? $userlog->userCard->device->device_name: 'Tidak terkait'): 'Tidak terkait' }}
-                </td>
-                <td>
-                    <div class="form-button-action">
-                        <a class="btn btn-link btn-warning btn-lg" href="/dashboard/device/{{ $userlog->id }}/edit">
-                            <i class="fa fa-edit"></i>
-                        </a>
-                        <button type="button" class="btn btn-link btn-danger" data-toggle="modal"
-                            data-target="#deleteModal" data-whatever="{{ $userlog->id }}">
-                            <i class="fa fa-times"></i>
-                        </button>
-                    </div>
                 </td>
             </tr>
         @endforeach

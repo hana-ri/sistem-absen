@@ -18,8 +18,11 @@
                                 <div class="form-group">
                                     <label for="idName">Name</label>
                                     <input type="text" name="name" value="{{ old('name', $userInfo->name) }}"
-                                        class="form-control" id="idName" aria-describedby="emailHelp"
-                                        placeholder="Name...">
+                                        class="form-control @error('name') is-invalid @enderror" id="idName"
+                                        aria-describedby="emailHelp" placeholder="Name...">
+                                    @error('name')
+                                        <div class="invalid-feedback"> {{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
@@ -27,15 +30,22 @@
                                     <label for="exampleInputPassword1">No. Unik</label>
                                     <input type="text" name="unique_identity"
                                         value="{{ old('unique_identity', $userInfo->unique_identity) }}"
-                                        class="form-control" id="exampleInputPassword1" placeholder="No. Unik...">
+                                        class="form-control @error('unique_identity') is-invalid @enderror"
+                                        id="exampleInputPassword1" placeholder="No. Unik...">
+                                    @error('unique_identity')
+                                        <div class="invalid-feedback"> {{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Tanggal Lahir</label>
-                                    <input type="date" name="DOB" class="form-control"
+                                    <input type="date" name="DOB" class="form-control @error('DOB') is-invalid @enderror"
                                         value="{{ old('DOB', $userInfo->DOB) }}" id="exampleInputPassword1"
                                         placeholder="No. Unik...">
+                                    @error('DOB')
+                                        <div class="invalid-feedback"> {{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -93,7 +103,11 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="idAddress">Address</label>
-                                    <textarea class="form-control" id="idAddress" rows="2" name="address">{{ $userInfo->address }}</textarea>
+                                    <textarea class="form-control @error('address') is-invalid @enderror" id="idAddress" rows="2"
+                                        name="address">{{ $userInfo->address }}</textarea>
+                                    @error('address')
+                                        <div class="invalid-feedback"> {{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

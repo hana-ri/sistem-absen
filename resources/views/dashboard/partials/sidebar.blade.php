@@ -23,13 +23,13 @@
                         <span class="sidebar-mini-icon">
                             <i class="fa fa-ellipsis-h"></i>
                         </span>
-                        <h4 class="text-section">Daftar Opsi</h4>
+                        <h4 class="text-section">List Menu Absen</h4>
                     </li>
                     @cannot('isUser')
                         <li class="nav-item {{ Request::is('dashboard/*') ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#submenu">
                                 <i class="fas fa-bars"></i>
-                                <p>Opsi</p>
+                                <p>Menu Absen</p>
                                 <span class="caret"></span>
                             </a>
                             <div class="collapse" id="submenu">
@@ -42,11 +42,6 @@
                                         </li>
                                     @endcan
                                     @can('isAdmin')
-                                        <li class="{{ Request::is('dashboard/users*') ? 'active' : '' }}">
-                                            <a href="/dashboard/users">
-                                                <span class="sub-item">Akun</span>
-                                            </a>
-                                        </li>
                                         <li class="{{ Request::is('dashboard/user-info*') ? 'active' : '' }}">
                                             <a href="/dashboard/user-info">
                                                 <span class="sub-item">Informasi Pengguna</span>
@@ -71,9 +66,33 @@
                                 </ul>
                             </div>
                         </li>
+                        @can('isAdmin')
+                            <li class="nav-section">
+                                <span class="sidebar-mini-icon">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </span>
+                                <h4 class="text-section">List Menu Admin</h4>
+                            </li>
+                            <li class="nav-item {{ Request::is('admin/*') ? 'active' : '' }}">
+                                <a data-toggle="collapse" href="#submenu2">
+                                    <i class="fas fa-bars"></i>
+                                    <p>Menu Admin</p>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse" id="submenu2">
+                                    <ul class="nav nav-collapse">
+                                        <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
+                                            <a href="/admin/users">
+                                                <span class="sub-item">Akun</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        @endcan
                     @endcannot
                 </ul>
             </div>
         </div>
     </div>
-<!-- End Sidebar -->
+    <!-- End Sidebar -->

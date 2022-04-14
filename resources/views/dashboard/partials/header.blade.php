@@ -26,59 +26,6 @@
             <div class="container-fluid">
                 <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                     <li class="nav-item dropdown hidden-caret">
-                        <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                            <i class="fas fa-layer-group"></i>
-                        </a>
-                        <div class="dropdown-menu quick-actions quick-actions-info animated fadeIn">
-                            <div class="quick-actions-header">
-                                <span class="title mb-1">Quick Actions</span>
-                                <span class="subtitle op-8">Shortcuts</span>
-                            </div>
-                            <div class="quick-actions-scroll scrollbar-outer">
-                                <div class="quick-actions-items">
-                                    <div class="row m-0">
-                                        <a class="col-6 col-md-4 p-0" href="#">
-                                            <div class="quick-actions-item">
-                                                <i class="flaticon-file-1"></i>
-                                                <span class="text">Generated Report</span>
-                                            </div>
-                                        </a>
-                                        <a class="col-6 col-md-4 p-0" href="#">
-                                            <div class="quick-actions-item">
-                                                <i class="flaticon-database"></i>
-                                                <span class="text">Create New Database</span>
-                                            </div>
-                                        </a>
-                                        <a class="col-6 col-md-4 p-0" href="#">
-                                            <div class="quick-actions-item">
-                                                <i class="flaticon-pen"></i>
-                                                <span class="text">Create New Post</span>
-                                            </div>
-                                        </a>
-                                        <a class="col-6 col-md-4 p-0" href="#">
-                                            <div class="quick-actions-item">
-                                                <i class="flaticon-interface-1"></i>
-                                                <span class="text">Create New Task</span>
-                                            </div>
-                                        </a>
-                                        <a class="col-6 col-md-4 p-0" href="#">
-                                            <div class="quick-actions-item">
-                                                <i class="flaticon-list"></i>
-                                                <span class="text">Completed Tasks</span>
-                                            </div>
-                                        </a>
-                                        <a class="col-6 col-md-4 p-0" href="#">
-                                            <div class="quick-actions-item">
-                                                <i class="flaticon-file"></i>
-                                                <span class="text">Create New Invoice</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown hidden-caret">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                             <div class="avatar-sm">
                                 <img src="{{ asset('vendor/template/img/profile.jpg') }}" alt="..."
@@ -95,9 +42,10 @@
                                                     class="avatar-img rounded"></div>
                                             <div class="u-text">
                                                 <h4>{{ auth()->user()->name }} - {{ auth()->user()->role }}</h4>
-                                                <p class="text-muted">{{ auth()->user()->email }}</p><a
-                                                    href="/dashboard/users/{{ auth()->user()->id }}/edit"
-                                                    class="btn btn-xs btn-secondary btn-sm">Edit Profile</a>
+                                                <p class="text-muted">{{ auth()->user()->email }}</p>
+                                                @can('isAdmin')
+                                                <a href="/admin/users/{{ auth()->user()->id }}/edit" class="btn btn-xs btn-secondary btn-sm">Edit Profile</a>
+                                                @endcan
                                             </div>
                                         </div>
                                     @endauth

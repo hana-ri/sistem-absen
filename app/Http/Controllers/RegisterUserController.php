@@ -28,6 +28,6 @@ class RegisterUserController extends Controller
 
         User::create($validatedData);
 
-        return redirect('/login');
+        return redirect('/login')->with('successRegister', 'Registrasi Berhasil!');
     }
 }
