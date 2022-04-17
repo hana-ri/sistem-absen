@@ -69,7 +69,7 @@
                         @can('isAdmin')
                             <li class="nav-section">
                                 <span class="sidebar-mini-icon">
-                                    <i class="fa fa-ellipsis-h"></i>
+                                    <i class="fa fa-user-h"></i>
                                 </span>
                                 <h4 class="text-section">List Menu Admin</h4>
                             </li>
