@@ -20,6 +20,7 @@ class CreateUserLogsTable extends Migration
             $table->time('time_in', $precision = 0)->nullable();
             $table->time('time_out', $precision = 0)->nullable();
             $table->boolean('card_out')->default(0);
+            $table->timestamps();
         });
     }
 

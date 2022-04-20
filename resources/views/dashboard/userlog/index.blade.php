@@ -42,10 +42,20 @@
                 <div class="modal-body">
                     <form action="/dashboard/userlog" method="GET" id="filterForm">
                         <div class="form-group">
+                            <label for="idUniqueIdentity">Departemen</label>
+                            <select class="custom-select" name="device_dept">
+                                <option selected>List Departemen</option>
+                                @foreach ($devices as $device)
+                                    <option value="{{ $device->uid }}" {{ (request('device_dept') == $device->uid) ? 'selected' : '' }}>{{ $device->device_name }} - {{ $device->device_dept }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="idUniqueIdentity">UID Kartu</label>
                             <input type="text" name="user_card_uid" class="form-control" id="idUniqueIdentity"
                                 value="{{ request('user_card_uid') }}">
                         </div>
+                        <p class="text-center">Rentang Data</p>
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
@@ -59,6 +69,20 @@
                                     <label for="idEndDate">Tanggal Akhir</label>
                                     <input type="date" name="end_date" class="form-control" id="idEndDate"
                                         value="{{ request('end_date') }}">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="idStartDate">Waktu Masuk</label>
+                                    <input type="text" name="time_in" class="form-control" id="timepicker"
+                                        value="{{ request('time_in') }}" placeholder="08:30:00">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="idEndDate">Waktu Keluar</label>
+                                    <input type="text" name="time_out" class="form-control" id="timepicker"
+                                        value="{{ request('time_out') }}" placeholder="15:30:00">
                                 </div>
                             </div>
                         </div>
@@ -85,6 +109,15 @@
                 <div class="modal-body">
                     <form action="/dashboard/userlog/export" method="GET" id="exportForm">
                         <div class="form-group">
+                            <label for="idUniqueIdentity">Departemen</label>
+                            <select class="custom-select" name="device_dept">
+                                <option selected>List Departemen</option>
+                                @foreach ($devices as $device)
+                                    <option value="{{ $device->uid }}" {{ (request('device_dept') == $device->uid) ? 'selected' : '' }}>{{ $device->device_name }} - {{ $device->device_dept }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="idUniqueIdentity">UID Kartu</label>
                             <input type="text" name="user_card_uid" class="form-control" id="idUniqueIdentity"
                                 value="{{ request('user_card_uid') }}">
@@ -103,6 +136,20 @@
                                     <label for="idEndDate">Tanggal Akhir</label>
                                     <input type="date" name="end_date" class="form-control" id="idEndDate"
                                         value="{{ request('end_date') }}">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="idStartDate">Waktu Masuk</label>
+                                    <input type="text" name="time_in" class="form-control" id="timepicker"
+                                        value="{{ request('time_in') }}" placeholder="08:30:00">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="idEndDate">Waktu Keluar</label>
+                                    <input type="text" name="time_out" class="form-control" id="timepicker"
+                                        value="{{ request('time_out') }}" placeholder="15:30:00">
                                 </div>
                             </div>
                         </div>

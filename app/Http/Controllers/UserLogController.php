@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UserLog;
+use App\Models\Device;
 
 use Carbon\Carbon;
 use App\Exports\UserLogView;
 use Maatwebsite\Excel\Facades\Excel;
 
-use Illuminate\Database\Eloquent\Builder;
+// use Illuminate\Database\Eloquent\Builder;
 
 class UserLogController extends Controller
 {
@@ -23,26 +24,16 @@ class UserLogController extends Controller
         ]);
     }
 
-    public function index()
-    {
-        if (request('start_date') && request('end_date')) {
-            if(request('user_card_uid')) {
-                return view('/dashboard/userlog/index', [
-                    'userlogs' => UserLog::where('user_card_uid', '=' ,request('user_card_uid'))->whereBetween('check_in_date', [request('start_date'), request('end_date') ])->get(),
-                ]);       
-            }
-            return view('/dashboard/userlog/index', [
-                'userlogs' => UserLog::whereBetween('check_in_date', [request('start_date'), request('end_date') ])->get(),
-            ]);            
-        }
-
-        if (request('user_card_uid')) {
-            return view('/dashboard/userlog/index', [
-                'userlogs' => UserLog::where('user_card_uid', '=', request('user_card_uid'))->get(),
-            ]);            
-        }
+    public function index(Request $request)
+    {        
         return view('/dashboard/userlog/index', [
-            'userlogs' => UserLog::all(),
+            'userlogs' => UserLog::latest()
+                                    ->FilterByDept($request->device_dept)
+                                    ->FilterByUID($request->user_card_uid)
+                                    ->FilterByDate($request->start_date, $request->end_date)
+                                    ->FilterByTime($request->time_in, $request->time_out)
+                                    ->get(),
+            'devices' => Device::all(),
         ]);
     }
 

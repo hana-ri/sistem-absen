@@ -15,7 +15,7 @@
                             <h2>{{ $error }}</h2>
                         @endforeach
                     @endif
-                    <form action="/dashboard/users/{{ $user->id }}" method="POST" id="userUpdateForm">
+                    <form action="/admin/users/{{ $user->id }}" method="POST" id="userUpdateForm">
                         @method('PUT')
                         @csrf
                         <div class="form-group">
