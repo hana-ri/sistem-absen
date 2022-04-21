@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Riza Hana',
             'email' => 'admin@gmail.com',
-            'password'=> bcrypt('Ggwp2001'),
+            'password'=> bcrypt(env('seedPWD')),
             'role' => 'Admin',
             'status' => 1
         ]);
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Jeanne',
             'email' => 'staff@gmail.com',
-            'password'=> bcrypt('Ggwp2001'),
+            'password'=> bcrypt(env('seedPWD')),
             'role' => 'Staff',
             'status' => 1
         ]);
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Eri',
             'email' => 'user@gmail.com',
-            'password'=> bcrypt('Ggwp2001'),
+            'password'=> bcrypt(env('seedPWD')),
             'role' => 'User',
             'status' => 1
         ]);
