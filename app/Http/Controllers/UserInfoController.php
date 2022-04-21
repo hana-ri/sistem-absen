@@ -114,8 +114,12 @@ class UserInfoController extends Controller
 
         $result = UserInfo::where('id', $userInfo->id)->update($validatedData);
         
+        if ($result->user_card_uid != null) {
+            UserCard::where('uid', $result->user_card_uid)->update(['card_status' => true]);
+        }
+
         if (!$result) {
-            return 'update user information failed';
+            return 'Create user information failed';
         }
 
         return redirect('/dashboard/user-info');
@@ -130,6 +134,7 @@ class UserInfoController extends Controller
      */
     public function destroy(UserInfo $userInfo)
     {
+        
         $userInfo->delete();
 
         return redirect('/dashboard/user-info');

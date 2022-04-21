@@ -37,6 +37,15 @@ class UserLogController extends Controller
         ]);
     }
 
+    public function clearRecord()
+    {
+        if(request('confirmation')) {
+            userLog::query()->delete();
+            return redirect('/dashboard/userlog');
+        }
+        return redirect('/dashboard/userlog');
+    }
+
     public function export()
     {
         return Excel::download(new UserLogView, 'UserLog.xlsx');

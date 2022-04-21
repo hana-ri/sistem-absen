@@ -9,11 +9,27 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Apakah anda yakin ingin menghapus data tersebut?</p>
-                    <form id="deleteForm" method="POST">
-                        @method('DELETE')
-                        @csrf
-                    </form>
+                    @if (Request::is('dashboard/userlog'))
+                        <form id="deleteForm" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <p>Seluruh data yang sudah direkam akan terhapus, apakah anda yakin ingin menghapus seluruh
+                                data histori absensi ? jika <strong>'Ya'</strong> silakan ceklis box dibawah</p>
+                            <div class="form-check">
+                                <input class="form-check-input position-static" type="checkbox" value="true"
+                                    name="confirmation">
+                                <label class="form-check-label">
+                                    Ya saya ingin menghapus seluruh data histori absensi
+                                </label>
+                            </div>
+                        </form>
+                    @else
+                        <p>Apakah anda yakin ingin menghapus data tersebut?</p>
+                        <form id="deleteForm" method="POST">
+                            @method('DELETE')
+                            @csrf
+                        </form>
+                    @endif
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" id="deleteRowButton">Hapus</button>
@@ -29,6 +45,7 @@
                 var button = $(event.relatedTarget)
                 var recipient = button.data('whatever')
                 var modal = $(this)
+
                 modal.find('.modal-body form').attr('action', '{{ URL::current() }}/' + recipient)
             });
 

@@ -24,10 +24,16 @@
                         data-target="#exportModal">
                         Export
                     </button>
+                    <button type="button" class="btn btn-danger btn-round ml-auto" data-toggle="modal"
+                        data-target="#deleteModal" data-whatever="clear-record">
+                        RESET!
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+
+    {{-- Delete Modal --}}
     @include('/dashboard/partials/deleteModal')
     <!-- Modal Filter -->
     <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">

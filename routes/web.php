@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function() {
 Route::group(['middleware' => ['auth', 'can:isAdmin']], function() {
     Route::get('/dashboard/userlog', [UserLogController::class, 'index']);
     Route::get('/dashboard/userlog/export', [UserLogController::class, 'export']);
+    Route::delete('/dashboard/userlog/clear-record', [UserLogController::class, 'clearRecord']);
     Route::resource('/dashboard/device', DeviceController::class);
     Route::resource('/dashboard/user-card', UserCardController::class);
     Route::resource('/dashboard/user-info', UserInfoController::class);
