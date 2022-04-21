@@ -112,7 +112,6 @@ class UserInfoController extends Controller
             'address' => 'required',
         ]);
 
-        // dd($validatedData);
         $result = UserInfo::where('id', $userInfo->id)->update($validatedData);
         
         if (!$result) {
@@ -147,6 +146,10 @@ class UserInfoController extends Controller
 
     public function anyShow(UserInfo $userInfo)
     {
+        if($userInfo->status) {
+            UserCard::where('uid', $userInfo->user_card_uid)->update(['card_status' => false]);
+        }
+
         return view('/dashboard/userinfo/show', [
             'userInfo' => $userInfo
         ]);

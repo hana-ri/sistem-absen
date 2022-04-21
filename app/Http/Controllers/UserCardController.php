@@ -85,6 +85,8 @@ class UserCardController extends Controller
     public function destroy(UserCard $userCard)
     {
      
+        $userCard->userInfo()->delete();
+        $userCard->userLog()->delete();
         $userCard->delete();
 
         return redirect('/dashboard/user-card');

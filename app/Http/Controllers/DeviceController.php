@@ -122,7 +122,8 @@ class DeviceController extends Controller
      */
     public function destroy(Device $device)
     {
-        Device::destroy($device->uid);
+        $device->UserCard()->delete();
+        $device->delete();
         return redirect('/dashboard/device');
     }
 }

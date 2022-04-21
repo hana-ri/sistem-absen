@@ -42,9 +42,9 @@
                 <div class="modal-body">
                     <form action="/dashboard/userlog" method="GET" id="filterForm">
                         <div class="form-group">
-                            <label for="idUniqueIdentity">Departemen</label>
+                            <label for="idUniqueIdentity">Departemen<p class="text-danger d-inline">*</p></label>
                             <select class="custom-select" name="device_dept">
-                                <option selected>List Departemen</option>
+                                <option selected>Pilih Departemen</option>
                                 @foreach ($devices as $device)
                                     <option value="{{ $device->uid }}" {{ (request('device_dept') == $device->uid) ? 'selected' : '' }}>{{ $device->device_name }} - {{ $device->device_dept }}</option>
                                 @endforeach

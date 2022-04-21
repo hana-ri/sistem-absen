@@ -15,7 +15,7 @@ class CreateUserLogsTable extends Migration
     {
         Schema::create('user_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('user_card_uid')->foreign()->references('uid')->on('user_cards');
+            $table->string('user_card_uid')->foreign()->references('uid')->on('user_cards')->onDelete('cascade');
             $table->date('check_in_date')->nullable();
             $table->time('time_in', $precision = 0)->nullable();
             $table->time('time_out', $precision = 0)->nullable();
