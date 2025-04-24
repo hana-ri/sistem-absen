@@ -129,15 +129,3 @@ Sistem ini memiliki beberapa tabel utama:
 2. Data dikirim ke server web melalui API
 3. Sistem memverifikasi identitas pengguna dan mencatat waktu absensi
 4. Data absensi dapat diakses melalui dashboard web
-
-## Tim Pengembang
-
-Sistem ini dikembangkan sebagai bagian dari tugas mata kuliah Proyek Konsultasi oleh mahasiswa dari [Nama Universitas].
-
-## Lisensi
-
-[Jenis Lisensi] - Lihat file LICENSE untuk detail lebih lanjut.
-
-## Kontak
-
-Untuk informasi lebih lanjut atau dukungan, silakan hubungi [kontak@email.com].
